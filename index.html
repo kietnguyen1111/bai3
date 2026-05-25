@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20252 IT1110 THDC Quiz 03</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f0fdfa;
+            padding: 20px; 
+            color: #1e293b;
+        }
+        .quiz-container { 
+            background-color: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+            max-width: 850px; 
+            margin: auto; 
+        }
+        h2 { 
+            color: #0d9488;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .question-block { 
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px; 
+            border: 1px solid #e2e8f0;
+        }
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .options label { 
+            display: block; 
+            margin-bottom: 12px; 
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .options label:hover {
+            background-color: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+            vertical-align: middle;
+        }
+        button { 
+            background-color: #0d9488; 
+            color: white; 
+            padding: 14px 28px; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold;
+            display: block;
+            margin: 30px auto 0;
+            transition: background-color 0.2s;
+        }
+        button:hover { 
+            background-color: #0f766e; 
+        }
+        #result-container { 
+            margin-top: 25px; 
+            text-align: center;
+            font-size: 20px; 
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .feedback { 
+            font-weight: bold; 
+            display: none; 
+            margin-top: 15px; 
+            padding: 12px;
+            border-radius: 6px;
+        }
+        .correct-feedback { 
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+        .wrong-feedback { 
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+        .unanswered-feedback {
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>20252 IT1110 THDC Quiz 03</h2>
+        <div id="quiz-form">
+            
+            <div class="question-block">
+                <div class="question-title">1. Một ổ cứng được format với kích thước 1 block là 512Bytes, một file có dung lượng là 123004 Byte được lưu trữ trên ổ cứng. Đâu là khẳng định đúng</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q1" value="A"> Cần 241 Block để lưu trữ file trên</label>
+                    <label><input type="checkbox" name="q1" value="B"> Cần 240 Block để lưu trữ file trên</label>
+                    <label><input type="checkbox" name="q1" value="C"> Kích thước file lưu trên ổ cứng là 123004 Byte</label>
+                    <label><input type="checkbox" name="q1" value="D"> Kích thước file lưu trên ổ cứng là 123392 Byte</label>
+                </div>
+                <div class="feedback" id="feedback-q1"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">2. Ổ cứng Desktop có tốc độ quay 7200RPM, giả sử thời gian trung bình để di chuyển tới vị trí đọc dữ liệu là 8ms. Hãy tính thời gian trung bình để đọc 250MB dữ liệu</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q2" value="A"> 4.178s</label>
+                    <label><input type="checkbox" name="q2" value="B"> 4.17s</label>
+                    <label><input type="checkbox" name="q2" value="C"> 4.167s</label>
+                    <label><input type="checkbox" name="q2" value="D"> 4.147s</label>
+                    <label><input type="checkbox" name="q2" value="E"> 5.56s</label>
+                    <label><input type="checkbox" name="q2" value="F"> 5.568s</label>
+                </div>
+                <div class="feedback" id="feedback-q2"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">3. Trong máy tính bộ nhớ cache thường được dùng ở đâu</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q3" value="A"> Dùng để tăng tốc độ trao đổi giữa CPU và bộ nhớ trong RAM</label>
+                    <label><input type="checkbox" name="q3" value="B"> Dùng để tăng tốc độ trao đổi giữa RAM và HDD/SSD</label>
+                    <label><input type="checkbox" name="q3" value="C"> Dùng để tăng tốc độ trao đổi dữ liệu giữa các core trong CPU</label>
+                    <label><input type="checkbox" name="q3" value="D"> Dùng để tăng tốc độ trao đổi dữ liệu giữa CPU và ROM</label>
+                </div>
+                <div class="feedback" id="feedback-q3"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">4. USB Flash Disk có đặc điểm gì so với SSD?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q4" value="A"> Sử dụng NAND flash tương tự SSD</label>
+                    <label><input type="checkbox" name="q4" value="B"> Thường không có DRAM cache</label>
+                    <label><input type="checkbox" name="q4" value="C"> Hiệu năng thấp hơn SSD</label>
+                    <label><input type="checkbox" name="q4" value="D"> Thiết kế nhỏ gọn, di động</label>
+                    <label><input type="checkbox" name="q4" value="E"> Có controller đơn giản hơn</label>
+                </div>
+                <div class="feedback" id="feedback-q4"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">5. Đâu là các phần mềm được xếp vào phần mềm ứng dụng</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q5" value="A"> Hệ điều hành</label>
+                    <label><input type="checkbox" name="q5" value="B"> Phần mềm diệt virus, driver</label>
+                    <label><input type="checkbox" name="q5" value="C"> Trình duyệt Web: Chrome, firefox,..</label>
+                    <label><input type="checkbox" name="q5" value="D"> Bộ phần mềm văn phòng của microsoft: Word, excel, power point,...</label>
+                    <label><input type="checkbox" name="q5" value="E"> phần mềm nghe nhạc như spotify</label>
+                </div>
+                <div class="feedback" id="feedback-q5"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">6. Bên cạnh mô hình thiết kế máy tính dạng khối (module) thì còn có các mô hình thiết kế máy tính nào khác -- Google</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q6" value="A"> Mô hình Tích hợp (Integrated Computing) – SoC (System on Chip)</label>
+                    <label><input type="checkbox" name="q6" value="B"> Mô hình Máy tính Nguyên khối (Monolithic Computing)</label>
+                    <label><input type="checkbox" name="q6" value="C"> Mô hình Máy tính Phi tập trung (Distributed Computing)</label>
+                    <label><input type="checkbox" name="q6" value="D"> Mô hình Máy tính Nhúng (Embedded Computing)</label>
+                </div>
+                <div class="feedback" id="feedback-q6"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">7. Khi nào việc tăng số nhân mang lại lợi ích rõ rệt nhất?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q7" value="A"> Xử lý video, encoding/decoding</label>
+                    <label><input type="checkbox" name="q7" value="B"> Chạy ứng dụng đơn luồng đơn giản</label>
+                    <label><input type="checkbox" name="q7" value="C"> Chơi game có tối ưu đa luồng</label>
+                    <label><input type="checkbox" name="q7" value="D"> Xử lý AI/ML trên thiết bị</label>
+                    <label><input type="checkbox" name="q7" value="E"> Chạy nhiều ứng dụng cùng lúc</label>
+                    <label><input type="checkbox" name="q7" value="F"> Hiển thị ảnh tĩnh</label>
+                </div>
+                <div class="feedback" id="feedback-q7"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">8. Đâu là các lý do để chọn 1 ngôn ngữ lập trình theo kiểu thông dịch</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q8" value="A"> Cần kiểm thử nhanh, phát triển nhanh</label>
+                    <label><input type="checkbox" name="q8" value="B"> Không cần hiệu suất cao</label>
+                    <label><input type="checkbox" name="q8" value="C"> Viết script tự động hóa</label>
+                    <label><input type="checkbox" name="q8" value="D"> Cần hiệu suất tối đa</label>
+                    <label><input type="checkbox" name="q8" value="E"> Không muốn người khác dễ dàng đọc mã nguồn</label>
+                </div>
+                <div class="feedback" id="feedback-q8"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">9. Trong một máy tính desktop thì đâu là top 3 những bộ phận tiêu tốn nhiều năng lượng nhất</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q9" value="A"> Card đồ họa rời, CPU, Màn hình</label>
+                    <label><input type="checkbox" name="q9" value="B"> Card đồ họa rời, CPU, Mainboard</label>
+                    <label><input type="checkbox" name="q9" value="C"> CPU, Mainboard, HDD/SSD</label>
+                    <label><input type="checkbox" name="q9" value="D"> Card đồ họa rời, CPU, HDD/SSD</label>
+                </div>
+                <div class="feedback" id="feedback-q9"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">10. Những yếu tố nào ảnh hưởng đến hiệu năng đa nhân trên smartphone?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q10" value="A"> Số lượng nhân CPU</label>
+                    <label><input type="checkbox" name="q10" value="B"> Tốc độ xung nhịp từng nhân</label>
+                    <label><input type="checkbox" name="q10" value="C"> Kiến trúc vi xử lý (microarchitecture)</label>
+                    <label><input type="checkbox" name="q10" value="D"> Bộ lập lịch của hệ điều hành</label>
+                    <label><input type="checkbox" name="q10" value="E"> Tốc độ RAM và băng thông bộ nhớ</label>
+                    <label><input type="checkbox" name="q10" value="F"> Kích thước màn hình</label>
+                </div>
+                <div class="feedback" id="feedback-q10"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">11. Khẳng định nào để đánh giá tốc độ của một bộ vi xử lý là đúng</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q11" value="A"> Có thể đánh giá tốc độ máy tính thông qua số lệnh thực hiện trong 1 giây</label>
+                    <label><input type="checkbox" name="q11" value="B"> Một số loại chip có thể thay đổi được tốc độ theo nhu cầu sử dụng hiện tại để tiết kiệm điện</label>
+                    <label><input type="checkbox" name="q11" value="C"> Đánh giá tốc độ máy tính thông qua tần số xung nhịp đồng hồ sẽ cho độ tin cậy cao nhất</label>
+                    <label><input type="checkbox" name="q11" value="D"> Trên các CPU thế hệ mới có nhiều nhân thì để đánh giá tổng quan tốc độ của CPU cần quan tâm thêm về số nhân, bộ nhớ cache</label>
+                    <label><input type="checkbox" name="q11" value="E"> CPU càng nhiều nhân thì chạy một chương trình sẽ càng nhanh hơn</label>
+                </div>
+                <div class="feedback" id="feedback-q11"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">12. Hiện tại đang có những công nghệ nào trong nghiên cứu và chế tạo RAM máy tính -- Google</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q12" value="A"> DRAM (Dynamic RAM): Là dạng Volatile Memory - Bộ nhớ dễ mất dữ liệu, VD.SDRAM, DDR(DDR1 → DDR2 → DDR3 → DDR4 → DDR5), LPDDR (Low Power DDR)</label>
+                    <label><input type="checkbox" name="q12" value="B"> SRAM (Static RAM) - Bộ nhớ tĩnh</label>
+                    <label><input type="checkbox" name="q12" value="C"> MRAM (Magnetoresistive RAM) - RAM từ điện trở</label>
+                    <label><input type="checkbox" name="q12" value="D"> PRAM (Phase Change RAM) - RAM thay đổi pha</label>
+                    <label><input type="checkbox" name="q12" value="E"> RRAM (Resistive RAM) - RAM điện trở</label>
+                    <label><input type="checkbox" name="q12" value="F"> FeRAM (Ferroelectric RAM) - RAM sắt điện</label>
+                </div>
+                <div class="feedback" id="feedback-q12"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">13. Đâu là các giao thức để kết nối các bên trong máy tính</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q13" value="A"> PCI Express (PCIe)</label>
+                    <label><input type="checkbox" name="q13" value="B"> SATA (Serial ATA)</label>
+                    <label><input type="checkbox" name="q13" value="C"> NVMe (Non-Volatile Memory Express)</label>
+                    <label><input type="checkbox" name="q13" value="D"> SPI (Serial Peripheral Interface)</label>
+                    <label><input type="checkbox" name="q13" value="E"> USB 2.0</label>
+                    <label><input type="checkbox" name="q13" value="F"> HDMI 2.1</label>
+                    <label><input type="checkbox" name="q13" value="G"> Thunderbolt 4</label>
+                </div>
+                <div class="feedback" id="feedback-q13"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">14. Máy tính có Memory Bus là 128 bit thì mất nhiêu lâu mới có thể đọc hết 50MB. Giả sử xung nhịp đồng hồ của bộ nhớ RAM là 3200Mhz 3.2 tỉ xung nhịp/s</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q14" value="A"> 0.6553600s</label>
+                    <label><input type="checkbox" name="q14" value="B"> 0.3276800s</label>
+                    <label><input type="checkbox" name="q14" value="C"> 0.001024s</label>
+                    <label><input type="checkbox" name="q14" value="D"> 1.024ms</label>
+                </div>
+                <div class="feedback" id="feedback-q14"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">15. Chuẩn kết nối USB có thể được dùng làm gì</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q15" value="A"> Kết nối thiết bị ngoại vi (chuột, bàn phím, máy in, tay cầm chơi game, webcam)</label>
+                    <label><input type="checkbox" name="q15" value="B"> Sạc thiết bị (điện thoại, tablet, laptop)</label>
+                    <label><input type="checkbox" name="q15" value="C"> Truyền hình ảnh, âm thanh (USB-C hỗ trợ DisplayPort, HDMI, Thunderbolt)</label>
+                    <label><input type="checkbox" name="q15" value="D"> Kết nối Internet qua đầu chuyển USB - LAN</label>
+                    <label><input type="checkbox" name="q15" value="E"> Kết nối CPU hoặc RAM mở rộng</label>
+                </div>
+                <div class="feedback" id="feedback-q15"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">16. Đâu là khẳng định đúng về kiến trúc máy tính</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q16" value="A"> Cấu tạo máy tính bao gồm 4 khối: Đầu vào, đầu ra, bộ xử lý trung tâm và bộ nhớ chính</label>
+                    <label><input type="checkbox" name="q16" value="B"> Cấu tạo máy tính bao gồm 5 khối: Đầu vào, đầu ra, bộ xử lý trung tâm, bộ nhớ chính và bộ nhớ ngoài</label>
+                    <label><input type="checkbox" name="q16" value="C"> Bộ xử lý trung tâm bao gồm ALU, CU và tập thanh ghi</label>
+                    <label><input type="checkbox" name="q16" value="D"> Tất cả các máy tính hiện nay chỉ được thiết kế theo duy nhất kiến trúc Von Neumann</label>
+                </div>
+                <div class="feedback" id="feedback-q16"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">17. Vai trò của việc tăng số nhân CPU trong SoC điện thoại là gì?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q17" value="A"> Tăng khả năng xử lý song song (parallel processing)</label>
+                    <label><input type="checkbox" name="q17" value="B"> Giảm tiêu thụ điện năng trong mọi trường hợp</label>
+                    <label><input type="checkbox" name="q17" value="C"> Cải thiện hiệu năng khi chạy đa nhiệm</label>
+                    <label><input type="checkbox" name="q17" value="D"> Tăng hiệu năng đơn luồng (single-thread) tuyến tính</label>
+                    <label><input type="checkbox" name="q17" value="E"> Phân bổ workload linh hoạt giữa các nhân</label>
+                    <label><input type="checkbox" name="q17" value="F"> Giảm nhiệt độ tuyệt đối của chip</label>
+                </div>
+                <div class="feedback" id="feedback-q17"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">18. Đâu là khẳng định đúng về vai trò của Hệ điều hành</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q18" value="A"> Quản lý tài nguyên</label>
+                    <label><input type="checkbox" name="q18" value="B"> Giao tiếp với người dùng</label>
+                    <label><input type="checkbox" name="q18" value="C"> Quản lý tập tin</label>
+                    <label><input type="checkbox" name="q18" value="D"> Quản lý tiến trình</label>
+                    <label><input type="checkbox" name="q18" value="E"> Bảo mật hệ thống</label>
+                    <label><input type="checkbox" name="q18" value="F"> Hỗ trợ đa nhiệm và đa nhiệm đồng thời</label>
+                </div>
+                <div class="feedback" id="feedback-q18"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">19. Những khẳng định nào sau đây về liên kết hệ thống - BUS là đúng</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q19" value="A"> Bus nội bộ trong CPU - internal BUS là BUS có tốc độ nhanh nhất</label>
+                    <label><input type="checkbox" name="q19" value="B"> Front Side Bus FSB là BUS kết nối CPU và bộ nhớ trong RAM ở các mô hình thiết kế máy tính cũ từ những năm 2000s</label>
+                    <label><input type="checkbox" name="q19" value="C"> FSB được thay thế bởi HyperTransport, Intel QuickPath Interconnect or Direct Media Interface trong các chip thế hệ mới</label>
+                    <label><input type="checkbox" name="q19" value="D"> SATA là BUS có tốc độ nhanh hơn PCI-e BUS</label>
+                </div>
+                <div class="feedback" id="feedback-q19"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">20. Đâu được coi là ưu điểm của các bộ xử lý đa nhân so với đơn nhân</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q20" value="A"> Xử lý đa nhiệm tốt hơn (ví dụ: vừa chạy trình duyệt, vừa render video)</label>
+                    <label><input type="checkbox" name="q20" value="B"> Hiệu suất cao hơn trong các phần mềm hỗ trợ đa luồng</label>
+                    <label><input type="checkbox" name="q20" value="C"> Hiệu suất năng lượng tốt hơn</label>
+                    <label><input type="checkbox" name="q20" value="D"> Giá thành rẻ hơn</label>
+                    <label><input type="checkbox" name="q20" value="E"> Tiêu thụ ít điện hơn</label>
+                    <label><input type="checkbox" name="q20" value="F"> Không cần tản nhiệt phức tạp</label>
+                </div>
+                <div class="feedback" id="feedback-q20"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">21. Khẳng định nào sau đây về ngôn ngữ lập trình là đúng</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q21" value="A"> Máy tính có thể chạy được trực tiếp chương trình viết bằng ngôn ngữ máy và hợp ngữ</label>
+                    <label><input type="checkbox" name="q21" value="B"> Chương trình viết bằng hợp ngữ thường nhỏ gọn hơn so với viết bằng C/C++</label>
+                    <label><input type="checkbox" name="q21" value="C"> Các ngôn ngữ dùng biên dịch sẽ cho chương trình hiệu quả hơn về thời gian so với thông dịch (khi cùng chạy trên 1 máy tính cấu hình tương đương)</label>
+                    <label><input type="checkbox" name="q21" value="D"> Trong nhóm các ngôn ngữ: COBOL, FORTRAN, Java, PHP, C/C++, Python thì Php là ngôn ngữ ra đời muộn nhất</label>
+                    <label><input type="checkbox" name="q21" value="E"> Các ngôn ngữ lập trình đều có điểm mạnh và điểm yếu riêng của mình</label>
+                </div>
+                <div class="feedback" id="feedback-q21"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">22. Đặc điểm nào đúng khi so sánh SSD với HDD?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q22" value="A"> SSD không có bộ phận cơ học chuyển động</label>
+                    <label><input type="checkbox" name="q22" value="B"> HDD có tốc độ truy xuất ngẫu nhiên (random access) nhanh hơn SSD</label>
+                    <label><input type="checkbox" name="q22" value="C"> SSD có độ trễ thấp hơn HDD</label>
+                    <label><input type="checkbox" name="q22" value="D"> HDD dễ bị ảnh hưởng bởi rung động hơn SSD</label>
+                    <label><input type="checkbox" name="q22" value="E"> SSD tiêu thụ điện năng thấp hơn trong nhiều trường hợp</label>
+                    <label><input type="checkbox" name="q22" value="F"> HDD có tốc độ đọc/ghi tuần tự luôn cao hơn SSD</label>
+                </div>
+                <div class="feedback" id="feedback-q22"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">23. Trong các ngôn ngữ lập trình sau, đâu là khẳng định đúng<br>Python, JavaScript, Ruby, PHP, Lua, C/C++, Java, C#, Go (Golang), Swift, Rust</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q23" value="A"> Python, JavaScript, Ruby, PHP, Lua, C/C++ là các ngôn ngữ lập trình theo hình thức thông dịch</label>
+                    <label><input type="checkbox" name="q23" value="B"> Java là ngôn ngữ lập trình kết hợp cả thông dịch và biên dịch</label>
+                    <label><input type="checkbox" name="q23" value="C"> Python, JavaScript, Ruby, PHP là ngôn ngữ lập trình thông dịch</label>
+                    <label><input type="checkbox" name="q23" value="D"> C#, Go (Golang), Swift, Rust là các ngôn ngữ lập trình biên dịch</label>
+                    <label><input type="checkbox" name="q23" value="E"> Python, JavaScript, Ruby, PHP, Lua, C# là các ngôn ngữ lập trình theo hình thức thông dịch</label>
+                </div>
+                <div class="feedback" id="feedback-q23"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">24. Đâu được coi là ưu điểm khi dùng bộ nhớ cache</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q24" value="A"> Tăng tốc độ xử lý: Giảm thời gian truy xuất RAM, giúp CPU xử lý nhanh hơn</label>
+                    <label><input type="checkbox" name="q24" value="B"> Giảm độ trễ: Các lệnh và dữ liệu quan trọng được lưu trữ gần CPU</label>
+                    <label><input type="checkbox" name="q24" value="C"> Tối ưu hiệu suất hệ thống</label>
+                    <label><input type="checkbox" name="q24" value="D"> Làm giảm giá thành chế tạo CPU</label>
+                </div>
+                <div class="feedback" id="feedback-q24"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">25. Đâu được coi là các nhược điểm của mô hình chế tạo máy tính theo các module (các khối)</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q25" value="A"> Kích thước lớn hơn & không tối ưu về không gian</label>
+                    <label><input type="checkbox" name="q25" value="B"> Độ trễ trong giao tiếp giữa các khối do kết nối qua BUS</label>
+                    <label><input type="checkbox" name="q25" value="C"> Tốn nhiều năng lượng hơn do cần dùng các linh kiện hỗ trợ kết nối</label>
+                    <label><input type="checkbox" name="q25" value="D"> Độ bền và tính ổn định thấp hơn so với thiết kế tích hợp</label>
+                    <label><input type="checkbox" name="q25" value="E"> Giá thành thường cao hơn so với thiết kế tích hợp</label>
+                </div>
+                <div class="feedback" id="feedback-q25"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">26. Đặc điểm nào sau đây là của SoC (System on Chip)?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q26" value="A"> Tích hợp CPU, GPU, RAM, I/O trên cùng một chip</label>
+                    <label><input type="checkbox" name="q26" value="B"> Các thành phần được đặt trên nhiều bo mạch riêng biệt</label>
+                    <label><input type="checkbox" name="q26" value="C"> Giảm độ trễ truyền dữ liệu giữa các thành phần</label>
+                    <label><input type="checkbox" name="q26" value="D"> Tiêu thụ điện năng thấp hơn so với hệ thống đa chip</label>
+                </div>
+                <div class="feedback" id="feedback-q26"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">27. SoC thường được sử dụng trong các thiết bị nào?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q27" value="A"> Smartphone</label>
+                    <label><input type="checkbox" name="q27" value="B"> IoT devices</label>
+                    <label><input type="checkbox" name="q27" value="C"> Server hiệu năng cao</label>
+                    <label><input type="checkbox" name="q27" value="D"> Embedded systems</label>
+                </div>
+                <div class="feedback" id="feedback-q27"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">28. Nếu bạn đang dự định phát triển 1 ứng dụng cho điện thoại di động thì ngôn ngữ lập trình nào sẽ phù hợp</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q28" value="A"> Swift nếu phát triển trên hệ điều hành Android</label>
+                    <label><input type="checkbox" name="q28" value="B"> Swift nếu phát triển trên hệ điều hành iOS</label>
+                    <label><input type="checkbox" name="q28" value="C"> Kotlin nếu phát triển trên hệ điều hành Android</label>
+                    <label><input type="checkbox" name="q28" value="D"> Kotlin nếu phát triển trên hệ điều hành iOS</label>
+                    <label><input type="checkbox" name="q28" value="E"> JavaScript (với React Native hoặc NativeScript) và Flutter (với Dart) nếu chạy đa nền tảng</label>
+                    <label><input type="checkbox" name="q28" value="F"> Java (với Android SDK) nếu chạy trên iOs</label>
+                </div>
+                <div class="feedback" id="feedback-q28"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">29. Đâu là khẳng định đúng về các loại bộ nhớ trên máy tính</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q29" value="A"> Tốc độ truy cập của bộ nhớ chính - RAM luôn nhanh hơn trên VGA</label>
+                    <label><input type="checkbox" name="q29" value="B"> Bộ nhớ có tốc độ truy cập nhanh nhất là cache L1 trong CPU</label>
+                    <label><input type="checkbox" name="q29" value="C"> Bộ nhớ có tốc độ truy cập nhanh nhất là tập thanh ghi</label>
+                    <label><input type="checkbox" name="q29" value="D"> bộ nhớ có dung lượng nhỏ nhất là cache</label>
+                    <label><input type="checkbox" name="q29" value="E"> Tốc độ truy cập ổ cứng SSD nhanh hơn so với tốc độ HDD</label>
+                </div>
+                <div class="feedback" id="feedback-q29"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">30. Những khẳng định nào sau về BUS trong máy tính là đúng</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q30" value="A"> Bus hệ thống được chia thành 3 loại BUS: Bus dữ liệu, Bus địa chỉ, Bus điều khiển</label>
+                    <label><input type="checkbox" name="q30" value="B"> Trong BUS liên kết hệ thống BUS Pci Express là BUS có tốc độ nhanh nhất</label>
+                    <label><input type="checkbox" name="q30" value="C"> Trong máy tính có 3 loại BUS: Bus vào/ra, Bus địa chỉ, Bus điều khiển</label>
+                    <label><input type="checkbox" name="q30" value="D"> Các BUS trong máy tính có tốc độ truyền dữ liệu bằng nhau (tốc độ xung nhịp đồng hồ)</label>
+                    <label><input type="checkbox" name="q30" value="E"> BUS dữ liệu chỉ được dùng để truyền dữ liệu giữa CPU và bộ nhớ trong RAM</label>
+                    <label><input type="checkbox" name="q30" value="F"> Trong BUS liên kết hệ thống thì BUS kết nối CPU và RAM có tốc độ nhanh nhất</label>
+                </div>
+                <div class="feedback" id="feedback-q30"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">31. Đâu là những chú ý khi lưu trữ dữ liệu trên bộ nhớ ngoài (ổ cứng/DVD/USB FlashDisk,..)</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q31" value="A"> Dùng ổ cứng SSD để có tốc độ truy cập cao hơn</label>
+                    <label><input type="checkbox" name="q31" value="B"> dùng thệ thống quản lý file exFAT hoặc NTFS thay vì FAT32 để lưu trữ file có kích thước lớn ( trên 4GB)</label>
+                    <label><input type="checkbox" name="q31" value="C"> Để bảo vệ dữ liệu khỏi lỗi vật lý và bị tấn công hãy sao lưu định kỳ và mã hóa dữ liệu quan trọng</label>
+                    <label><input type="checkbox" name="q31" value="D"> Hãy giải phân mảnh ổ đĩa nếu dùng HDD</label>
+                    <label><input type="checkbox" name="q31" value="E"> Dữ liệu lưu trữ trên bộ nhớ ngoài có thể tồn tại mãi mãi nên không sợ mất dữ liệu</label>
+                </div>
+                <div class="feedback" id="feedback-q31"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">32. Nhược điểm của SSD so với HDD là gì?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q32" value="A"> Giá thành trên mỗi GB cao hơn</label>
+                    <label><input type="checkbox" name="q32" value="B"> Số chu kỳ ghi/xóa có giới hạn</label>
+                    <label><input type="checkbox" name="q32" value="C"> Dễ bị phân mảnh dữ liệu hơn</label>
+                    <label><input type="checkbox" name="q32" value="D"> Khó phục hồi dữ liệu hơn khi hỏng</label>
+                    <label><input type="checkbox" name="q32" value="E"> Tốc độ chậm hơn trong mọi trường hợp</label>
+                    <label><input type="checkbox" name="q32" value="F"> Hiệu năng giảm khi gần đầy</label>
+                </div>
+                <div class="feedback" id="feedback-q32"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">33. Đâu là cách đặt tên file KHÔNG đúng trong Windows 10/11</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q33" value="A"> tenfile12.txt</label>
+                    <label><input type="checkbox" name="q33" value="B"> %tenFile.txt</label>
+                    <label><input type="checkbox" name="q33" value="C"> ?tenfile.txt</label>
+                    <label><input type="checkbox" name="q33" value="D"> tên@file.txt</label>
+                    <label><input type="checkbox" name="q33" value="E"> ten>file.txt</label>
+                </div>
+                <div class="feedback" id="feedback-q33"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">34. Chúng ta chọn dùng ổ cứng ngoài SSD thay vì HDD vì những lý do gì?</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q34" value="A"> Cần dung lượng lưu trữ lớn với giá rẻ (lưu trữ phim, ảnh, tài liệu)</label>
+                    <label><input type="checkbox" name="q34" value="B"> Cần tốc độ cao (chạy hệ điều hành, ứng dụng, game)</label>
+                    <label><input type="checkbox" name="q34" value="C"> Tiêu thụ ít điện hơn và chống sốc tốt hơn</label>
+                    <label><input type="checkbox" name="q34" value="D"> Có thể lưu dữ liệu lâu hơn khi không sử dụng</label>
+                    <label><input type="checkbox" name="q34" value="E"> Hoạt động êm ái, không có tiếng ồn</label>
+                </div>
+                <div class="feedback" id="feedback-q34"></div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">35. Khi nào nên dùng mô hình chế tạo máy tính theo các module (các khối)</div>
+                <div class="options">
+                    <label><input type="checkbox" name="q35" value="A"> máy tính dễ nâng cấp (PC chơi game, workstation)</label>
+                    <label><input type="checkbox" name="q35" value="B"> khả năng mở rộng linh hoạt (server, hệ thống nhúng tùy chỉnh)</label>
+                    <label><input type="checkbox" name="q35" value="C"> cần hệ thống nhỏ gọn, tiết kiệm không gian</label>
+                    <label><input type="checkbox" name="q35" value="D"> yêu cầu hiệu suất cao, độ trễ thấp</label>
+                    <label><input type="checkbox" name="q35" value="E"> cần tiết kiệm năng lượng (như thiết bị IoT, laptop dùng pin lâu)</label>
+                    <label><input type="checkbox" name="q35" value="F"> cần bảo trì, tthay thế dễ dàng</label>
+                </div>
+                <div class="feedback" id="feedback-q35"></div>
+            </div>
+
+        </div>
+        <button onclick="gradeQuiz()">Nộp bài & Chấm điểm</button>
+        <div id="result-container"></div>
+    </div>
+
+    <script>
+        const answerKey = {
+            q1: ["A", "D"],
+            q2: ["A"],
+            q3: ["A", "B", "C"],
+            q4: ["A", "B", "C", "D", "E"],
+            q5: ["C", "D", "E"],
+            q6: ["A", "B", "C", "D"],
+            q7: ["A", "C", "D", "E"],
+            q8: ["A", "B", "C"],
+            q9: ["A"],
+            q10: ["A", "B", "C", "D", "E"],
+            q11: ["A", "B", "C", "D"],
+            q12: ["A", "B", "C", "D", "E", "F"],
+            q13: ["A", "B", "C", "D"],
+            q14: ["C"],
+            q15: ["A", "B", "C", "D"],
+            q16: ["A", "C"],
+            q17: ["A", "C", "E"],
+            q18: ["A", "B", "C", "D", "E", "F"],
+            q19: ["A", "B", "C"],
+            q20: ["A", "B", "C"],
+            q21: ["B", "C", "D", "E"],
+            q22: ["A", "C", "D", "E"],
+            q23: ["B", "C", "D"],
+            q24: ["A", "B", "C"],
+            q25: ["A", "B", "C", "D", "E"],
+            q26: ["A", "C", "D"],
+            q27: ["A", "B", "D"],
+            q28: ["B", "C", "E"],
+            q29: ["C", "E"],
+            q30: ["A", "F"],
+            q31: ["A", "B", "C", "D"],
+            q32: ["A", "B", "D", "F"],
+            q33: ["C", "E"],
+            q34: ["B", "C", "E"],
+            q35: ["A", "B", "F"]
+        };
+
+        function gradeQuiz() {
+            let totalScore = 0;
+            let attemptedCount = 0;
+            const totalQuestions = Object.keys(answerKey).length;
+
+            for (let questionId in answerKey) {
+                const selected = Array.from(document.querySelectorAll(`input[name="${questionId}"]:checked`)).map(el => el.value);
+                const correct = answerKey[questionId];
+                const feedbackEl = document.getElementById(`feedback-${questionId}`);
+                
+                feedbackEl.style.display = "block";
+                feedbackEl.className = "feedback";
+
+                if (selected.length === 0) {
+                    feedbackEl.innerHTML = "⚠ Bạn chưa làm câu này.";
+                    feedbackEl.classList.add("unanswered-feedback");
+                    continue; 
+                }
+
+                attemptedCount++;
+                const isExactMatch = (selected.length === correct.length) && selected.every(val => correct.includes(val));
+
+                if (isExactMatch) {
+                    totalScore++;
+                    feedbackEl.innerHTML = "✓ Chính xác! (1/1 Points)";
+                    feedbackEl.classList.add("correct-feedback");
+                } else {
+                    feedbackEl.innerHTML = "✗ Sai. (Cần chọn chính xác và đầy đủ các đáp án đúng)";
+                    feedbackEl.classList.add("wrong-feedback");
+                }
+            }
+
+            const resultContainer = document.getElementById('result-container');
+            resultContainer.style.display = "block";
+            resultContainer.innerHTML = `
+                Đã hoàn thành: <strong>${attemptedCount} / ${totalQuestions}</strong> câu <br>
+                <strong>Điểm của bạn: <span style="color: #0d9488; font-size: 26px;">${totalScore} / ${totalQuestions}</span></strong>
+            `;
+            
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
